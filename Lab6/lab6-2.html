@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Андреев Даниил</title>
+</head>
+<body>
+    <script>
+        function Processor(clock_frequency, number_of_cores, processor_size, technical_process) {
+            this.clock_frequency = clock_frequency;
+            this.number_of_cores = number_of_cores;
+            this.processor_size = processor_size;
+            this.technical_process = technical_process;
+        }
+
+        Object.defineProperties(Processor.prototype, {
+            "showInfo": {
+                get() {
+                    return `
+                        Тактовая частота: ${this.clock_frequency}
+                        Количество ядер: ${this.number_of_cores}
+                        Разрядность процессора: ${this.processor_size}
+                        Технический процесс: ${this.technical_process}
+                    `
+                },
+                set(value) {
+                    let info = value.split(" ");
+                    this.clock_frequency = info[0];
+                    this.number_of_cores = info[1];
+                    this.processor_size = info[2];
+                    this.technical_process = info[3];
+                }
+            }
+        })
+
+        Processor.prototype.releaseDate = new Date();
+        Processor.prototype.showMoreInfo = function () {
+            return (`
+                Информация о процессоре:
+                        Тактовая частота: ${this.clock_frequency}
+                        Количество ядер: ${this.number_of_cores}
+                        Разрядность процессора: ${this.processor_size}
+                        Технический процесс: ${this.technical_process}
+                        Дата выхода: ${this.releaseDate.toLocaleDateString("ru")}
+            `)
+        }
+
+        let processor = new Processor(2000, 24, 64, 10);
+        document.write(`<p>Информация о процессоре Intel Core I9 13900K: ${processor.showMoreInfo()}</p>`)
+    </script>
+</body>
+</html>

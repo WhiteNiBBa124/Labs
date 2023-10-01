@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Андреев Даниил</title>
+</head>
+<body>
+    <script>
+        let arr = [];
+
+        for (let i = 0; i < 15; i++) {
+            arr.push(Math.floor(Math.random() * 100))
+        }
+        document.write(`<p>Вариант 1</p>`)
+        document.write(`<p>Массив: ${arr.join(" ")}</p>`);
+        let maxValue = arr[0];
+        let maxIndex = 0;
+        let buffer;
+
+        for (let i = 0; i < arr.length; i++) {
+            if (maxValue < arr[i]) {
+                maxValue = arr[i];
+                maxIndex = i;
+            }
+        }
+
+        buffer = arr[arr.length - 1];
+        arr[arr.length] = maxValue;
+        arr[maxIndex] = buffer;
+        document.write(`<p>Измененный массив: ${arr.join(" ")}</p>`);
+    </script>
+</body>
+</html>

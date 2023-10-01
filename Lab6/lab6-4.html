@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Андреев Даниил</title>
+</head>
+<body>
+<script>
+    class Processor {
+        constructor(clock_frequency, number_of_cores, processor_size, technical_process) {
+            this.clock_frequency = clock_frequency;
+            this.number_of_cores = number_of_cores;
+            this.processor_size = processor_size;
+            this.technical_process = technical_process;
+        }
+
+        get getInfo() {
+            return `
+                        Тактовая частота: ${this.clock_frequency}
+                        Количество ядер: ${this.number_of_cores}
+                        Разрядность процессора: ${this.processor_size}
+                        Технический процесс: ${this.technical_process}
+                    `
+        }
+
+        set getInfo(value) {
+            let info = value.split(" ");
+            this.clock_frequency = info[0];
+            this.number_of_cores = info[1];
+            this.processor_size = info[2];
+            this.technical_process = info[3];
+        }
+
+        showInfo() {
+            console.log(`
+                        Тактовая частота: ${this.clock_frequency}
+                        Количество ядер: ${this.number_of_cores}
+                        Разрядность процессора: ${this.processor_size}
+                        Технический процесс: ${this.technical_process}
+                    `);
+        }
+    }
+
+    class ExtendedProcessor extends Processor {
+        constructor(releaseDate, price, clock_frequency, number_of_cores, processor_size, technical_process) {
+            super(clock_frequency, number_of_cores, processor_size, technical_process);
+            this.releaseDate = releaseDate;
+            this.price = price;
+        }
+
+        get getInfo() {
+            return `
+                    Подробная информация о процессоре
+                        Тактовая частота: ${this.clock_frequency}
+                        Количество ядер: ${this.number_of_cores}
+                        Разрядность процессора: ${this.processor_size}
+                        Технический процесс: ${this.technical_process}
+                        Цена: ${this.price}
+                        Дата выхода: ${this.releaseDate}
+                    `
+        }
+
+        showInfo() {
+            console.log(`
+                    Подробная информация о процессоре
+                        Тактовая частота: ${this.clock_frequency}
+                        Количество ядер: ${this.number_of_cores}
+                        Разрядность процессора: ${this.processor_size}
+                        Технический процесс: ${this.technical_process}
+                        Цена: ${this.price}
+                        Дата выхода: ${this.releaseDate}
+                    `);
+        }
+    }
+
+    let processor = new ExtendedProcessor("20.10.2022", 68990, 2000, 24, 64, 10);
+    document.write(`<p>Вариант 1</p>`);
+    document.write(`<p>Свойства процессора Intel Core I9 13900K: ${processor.getInfo}</p>`)
+    processor.showInfo();
+</script>
+</body>
+</html>

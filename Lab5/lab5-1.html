@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Андреев Даниил</title>
+</head>
+<body>
+<script>
+    let str = "a;w+djwaod dn;kaw+l kdw+ kaw-;sd xlqw jcz-xlw; n-wq-da";
+
+    document.write(`<p>Вариант 1</p>`);
+    document.write(`<p>Исходная строка: ${str}</p>`)
+    document.write(`<p>Общее количество символов + и -: ${[...str].filter(function (item) {
+        return item === "+" || item === "-";
+    }).length}</p>`);
+
+    let lastIndex = str.lastIndexOf(";");
+    let newStr = [...str].map(function (item, index) {
+        if (item === ";" && index === lastIndex) {
+            return ".";
+        }
+        if (item === ";") {
+            return ",";
+        }
+
+        return item;
+    }).join("")
+    document.write(`<p>Замена всех ; на , и на . : ${newStr}</p>`)
+
+</script>
+</body>
+</html>

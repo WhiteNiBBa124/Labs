@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Андреев Даниил</title>
+</head>
+<body>
+    <style>
+        th, td {
+            border: 1px solid #000000;
+            padding: 10px;
+            text-align: center;
+        }
+        #modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .5);
+        }
+        select {
+            display: block;
+        }
+        button {
+            font-size: 20px;
+            background: royalblue;
+            outline: none;
+            border: none;
+            color: #fff;
+        }
+        input {
+            font-size: 18px;
+        }
+        .modal-content {
+            position: fixed;
+            right: 0;
+            height: 100%;
+            width: 500px;
+            font-size: 20px;
+            background: white;
+            padding: 50px;
+        }
+    </style>
+    <button onclick="showModal()">Открыть модальное окно</button>
+    <table id="table">
+        <tr>
+            <th>Тактовая частота</th>
+            <th>Количество ядер</th>
+            <th>Разрядность процессора</th>
+            <th>Технический процесс</th>
+        </tr>
+    </table>
+
+    <div id="modal">
+        <div class="modal-content">
+            <form id="form">
+                <label>Тактовая частота:</label><br>
+                <input type="number" value="2400" id="clock_frequency"><br><br>
+
+                <label>Количество ядер:</label><br>
+                <input type="number" value="16" id="number_of_cores"><br><br>
+
+                <label>Разрядность процессора:</label><br>
+                <select id="processor_size">
+                    <option value="32">32</option>
+                    <option value="64">64</option>
+                </select>
+
+                <label>Технический процесс:</label><br>
+                <input type="number" value="10" id="technical_process"><br><br>
+            
+                <button type="button" onclick="addProcessor()">Добавить процессор</button>
+            </form>
+            <button onclick="hideModal()">Скрыть окно</button>
+        </div>
+    <script>
+        const form = document.forms[0];
+
+        class Processor {
+            constructor(clock_frequency, number_of_cores, processor_size, technical_process) {
+                this.clock_frequency = clock_frequency;
+                this.number_of_cores = number_of_cores;
+                this.processor_size = processor_size;
+                this.technical_process = technical_process;
+            }
+        }
+        const processors = [];
+
+        function addProcessor () {
+            const clock_frequency = document.getElementById("clock_frequency").value;
+            const number_of_cores = document.getElementById("number_of_cores").value;
+            const processor_size = document.getElementById("processor_size").value;
+            const technical_process = document.getElementById("technical_process").value;
+
+            processors.push(new Processor(clock_frequency, number_of_cores, processor_size, technical_process));
+            addRow();
+            form.reset();
+        }
+
+        function addRow() {
+            const table = document.getElementById("table");
+            table.innerHTML = "<tr><th>Тактовая частота</th><th>Количество ядер</th><th>Разрядность процессора</th><th>Технический процесс</th></tr>";
+
+            processors.forEach(function (processor) {
+                let row = table.insertRow(1);
+                let clock_frequency = row.insertCell(0);
+                let number_of_cores = row.insertCell(1);
+                let processor_size = row.insertCell(2);
+                let technical_process = row.insertCell(3);
+
+                clock_frequency.innerHTML = processor.clock_frequency;
+                number_of_cores.innerHTML = processor.number_of_cores;
+                processor_size.innerHTML = processor.processor_size;
+                technical_process.innerHTML = processor.technical_process;
+            })
+
+        }
+
+        function showModal() {
+            const modal = document.getElementById("modal");
+            modal.style.display = "flex";
+        }
+        function hideModal() {
+            const modal = document.getElementById("modal");
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>

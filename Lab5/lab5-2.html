@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Андреев Даниил</title>
+</head>
+<body>
+<script>
+    let str = "догадываться утверждать воевать призывать добровольный учитывать профессиональный обращение отказаться прошлый";
+    let countSymbol = 0;
+
+    str.split(" ").forEach(function (item) {
+        if (item.indexOf("п") !== -1) {
+            countSymbol++;
+        }
+    });
+
+    document.write(`<p>Вариант 1</p>`);
+    document.write(`<p>Исходная строка: ${str}</p>`);
+    document.write(`<p>Запятая после каждого слова: ${str.split(" ").join(", ")}</p>`);
+    document.write(`<p>Количество слов, в которых есть буква "п": ${countSymbol}</p>`);
+</script>
+</body>
+</html>

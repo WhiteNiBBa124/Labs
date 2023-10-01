@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Андреев Даниил</title>
+</head>
+<body>
+    <script>
+        let firstPrice = +(prompt("Укажите цену первого товара"));
+        let secondPrice = +(prompt("Укажите цену второго товара"));
+        let discount = +(prompt("Укажите размер скидки"));
+
+        if (firstPrice < 0) firstPrice = 0;
+        if (secondPrice < 0) secondPrice = 0;
+        if (discount < 0) discount = 1;
+        if (discount > 5) discount = 5;
+
+        let sum = firstPrice + secondPrice;
+        let discountSum = sum / 100 * discount;
+
+        document.write('<div style="border:1px solid #000; width:350px; padding: 5px; margin: 0 auto">');
+        document.write('<p style="margin: 0px;">ООО "Евроторг"</p>');
+        document.write('<p style="margin: 0px; font-weight: 900; text-align: center; font-size: 20px">СПАСИБО ЗА ПОКУПКУ!</p>');
+        document.write(`<p style="margin: 0px;">Дата покупки: ${new Date(Date.now()).toLocaleDateString("ru")} ${new Date().getHours()}:${new Date().getMinutes()}</p>`);
+        document.write("<br></br>")
+        document.write('<p style="margin: 0px;">Наименование товара</p>');
+        document.write('<span>1</span>');
+        document.write(`<span style="margin-left: 50px">=${firstPrice}</span>`);
+        document.write('<p style="margin: 0px;">Наименование товара</p>');
+        document.write('<span>1</span>');
+        document.write(`<span style="margin-left: 50px">=${secondPrice}</span>`);
+        document.write('<p style="margin: 0px; font-weight: 900; font-size: 20px">ИТОГО</p>');
+        document.write(`<p style="margin: 0px; font-weight: 900; text-align: center; font-size: 20px">${sum} BYN</p>`);
+        document.write(`<p style="margin: 0px;">Ваша скидка: ${discount}%</p>`);
+        document.write(`<p style="margin: 0px; text-align: center;">${discountSum} BYN</p>`);
+        document.write('<p style="margin: 0px; font-weight: 900; font-size: 20px">СУММА СО СКИДКОЙ</p>');
+        document.write(`<p style="margin: 0px; font-weight: 900; text-align: center; font-size: 20px">${sum - discountSum} BYN</p>`);
+        document.write('</div>');
+    </script>
+</body>
+</html>

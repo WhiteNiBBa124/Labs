@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Андреев Даниил</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+  }
+  table td{
+    padding: 5px 10px;
+    text-align: center;
+    border: 1px solid #000000;
+  }
+</style>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td>Флаг страны</td>
+        <td>Название страны</td>
+        <td>Название валюты (англ.)</td>
+        <td>Название валюты (бел.)</td>
+        <td>Курс</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td id="flag"></td>
+        <td id="countryName"></td>
+        <td id="countryNameEng"></td>
+        <td id="countryNameBel"></td>
+        <td id="countryCourse"></td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    const request = new XMLHttpRequest();
+    const requestPrice = new XMLHttpRequest();
+
+    request.open("GET", "https://api.nbrb.by/exrates/currencies/5");
+    requestPrice.open("GET", "https://api.nbrb.by/exrates/rates/466");
+
+    function reqReadyStateChange() {
+        if (request.readyState === 4 && request.status === 200) {
+            const flag = document.getElementById("flag");
+            const countryName = document.getElementById("countryName");
+            const countryNameEng = document.getElementById("countryNameEng");
+            const countryNameBel = document.getElementById("countryNameBel");
+
+            const response = JSON.parse(request.responseText);
+            const flagImage = document.createElement("img");
+
+            flagImage.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/160px-Flag_of_Argentina.svg.png"
+            flag.appendChild(flagImage);
+
+            countryName.innerHTML = "Аргентина";
+            countryNameEng.innerHTML = response.Cur_Name_Eng;
+            countryNameBel.innerHTML = response.Cur_Name_Bel;
+        }
+    }
+
+    function reqReadyStateCourseChange() {
+        if (requestPrice.readyState === 4 && requestPrice.status === 200) {
+            const countryCourse = document.getElementById("countryCourse");
+            const response = JSON.parse(requestPrice.responseText);
+            countryCourse.innerHTML = response.Cur_OfficialRate;
+        }
+    }
+
+    request.onreadystatechange = reqReadyStateChange;
+    requestPrice.onreadystatechange = reqReadyStateCourseChange;
+    request.send();
+    requestPrice.send();
+</script>
+</body>
+</html>

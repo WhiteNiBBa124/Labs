@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Андреев Даниил</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<style>
+    table td{
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #000000;
+    }
+</style>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td>Курс Аргентины к Алжирии</td>
+        <td>Курс Аргентины к Норвегии</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td id=""></td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    const tbody = $("tbody > tr > td");
+
+    async function getCourse() {
+        const responseArgentina = await fetch("https://api.nbrb.by/exrates/rates/466");
+        const responseAlgeria = await fetch("https://api.nbrb.by/exrates/rates/465");
+        const responseNorway = await fetch("https://api.nbrb.by/exrates/rates/455");
+
+        const resultArgentina = await responseArgentina.json();
+        const resultAlgeria = await responseAlgeria.json();
+        const resultNorway = await responseNorway.json();
+
+        const resultArgentinaRate = resultArgentina.Cur_OfficialRate;
+        const resultAlgeriaRate = resultAlgeria.Cur_OfficialRate;
+        const resultNorwayRate = resultNorway.Cur_OfficialRate;
+
+        tbody[0].innerHTML = (resultArgentinaRate / resultAlgeriaRate).toFixed(5);
+        tbody[1].innerHTML = (resultArgentinaRate / resultNorwayRate).toFixed(5);
+    }
+
+    getCourse();
+</script>
+</body>
+</html>

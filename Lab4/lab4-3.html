@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Андреев Даниил</title>
+</head>
+<body>
+    <script>
+        let arr = [];
+        let a = +prompt("Введите начальную точку a");
+        let b = +prompt("Введите конечную точку b");
+        for (let i = 0; i < 15; i++) {
+            arr.push(Math.floor(Math.random() * 100))
+        }
+        let arrBetweenAB;
+
+        if (a > b) {
+            arrBetweenAB = arr.slice(b, a);
+        } else {
+            arrBetweenAB = arr.slice(a, b)
+        }
+
+        let sumInArr = arr.reduce(function (accumulator, item, index) {
+            if (index % 3 === 0 && index !== 0) {
+                return accumulator + item;
+            } else {
+                return accumulator;
+            }
+        }, 0);
+        let sumInBetweenABArr = arrBetweenAB.reduce(function (accumulator, item, index) {
+            if (index % 3 === 0 && index !== 0) {
+                return accumulator + item;
+            } else {
+                return accumulator;
+            }
+        }, 0);
+
+        document.write(`<p>Вариант 1</p>`)
+        document.write(`<p>Массив: ${arr.join(" ")}</p>`);
+        document.write(`<p>Массив между a и b: ${arrBetweenAB.join(" ")}</p>`);
+        document.write(`<br></br>`)
+        document.write(`<p>Количество чисел принадлежащих промежутку A и B: ${arrBetweenAB.length}</p>`);
+        document.write(`<p>Сумма чисел стоящих на местах кратных 3 в исходном массиве: ${sumInArr}</p>`);
+        document.write(`<p>Сумма чисел стоящих на местах кратных 3 в массиве между A и B: ${sumInBetweenABArr}</p>`);
+    </script>
+</body>
+</html>

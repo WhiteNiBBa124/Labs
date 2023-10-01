@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Андреев Даниил</title>
+</head>
+<body>
+    <script>
+        class Processor {
+            constructor(clock_frequency, number_of_cores, processor_size, technical_process) {
+                this.clock_frequency = clock_frequency;
+                this.number_of_cores = number_of_cores;
+                this.processor_size = processor_size;
+                this.technical_process = technical_process;
+            }
+
+            get getInfo() {
+                return `
+                        Тактовая частота: ${this.clock_frequency}
+                        Количество ядер: ${this.number_of_cores}
+                        Разрядность процессора: ${this.processor_size}
+                        Технический процесс: ${this.technical_process}
+                    `
+            }
+
+            set getInfo(value) {
+                let info = value.split(" ");
+                this.clock_frequency = info[0];
+                this.number_of_cores = info[1];
+                this.processor_size = info[2];
+                this.technical_process = info[3];
+            }
+
+            showInfo() {
+                console.log(`
+                        Тактовая частота: ${this.clock_frequency}
+                        Количество ядер: ${this.number_of_cores}
+                        Разрядность процессора: ${this.processor_size}
+                        Технический процесс: ${this.technical_process}
+                    `);
+            }
+        }
+        class ExtendedProcessor extends Processor {
+            constructor(releaseDate, price, clock_frequency, number_of_cores, processor_size, technical_process) {
+                super(clock_frequency, number_of_cores, processor_size, technical_process);
+                this.releaseDate = releaseDate;
+                this.price = price;
+            }
+
+            get getInfo() {
+                return `
+                    Подробная информация о процессоре
+                        Тактовая частота: ${this.clock_frequency}
+                        Количество ядер: ${this.number_of_cores}
+                        Разрядность процессора: ${this.processor_size}
+                        Технический процесс: ${this.technical_process}
+                        Цена: ${this.price}
+                        Дата выхода: ${this.releaseDate}
+                    `
+            }
+
+            showInfo() {
+                console.log(`
+                    Подробная информация о процессоре
+                        Тактовая частота: ${this.clock_frequency}
+                        Количество ядер: ${this.number_of_cores}
+                        Разрядность процессора: ${this.processor_size}
+                        Технический процесс: ${this.technical_process}
+                        Цена: ${this.price}
+                        Дата выхода: ${this.releaseDate}
+                    `);
+            }
+        }
+    
+        let processors = [];
+
+        processors.push(new ExtendedProcessor("20.10.2022", 68990, 2000, 24, 64, 10));
+        processors.push(new ExtendedProcessor("17.09.2020", 53000, 2500, 4, 64, 14));
+        processors.push(new ExtendedProcessor("13.11.2022", 24000, 2000, 12, 64, 20));
+        processors.push(new ExtendedProcessor("05.08.2021", 100990, 3000, 8, 64, 15));
+        processors.push(new ExtendedProcessor("16.07.2019", 77990, 2500, 16, 64, 4));
+
+        let expensiveProcessor = processors[0];
+        let cheapProcessor = processors[0];
+        let totalSum = processors.reduce(function (accumulator, item) {
+            return accumulator + item.price
+        }, 0);
+        let averageSum = totalSum / processors.length;
+
+        processors.forEach(function (processor) {
+            if (expensiveProcessor.price < processor.price) {
+                expensiveProcessor = processor;
+            }
+
+            if (cheapProcessor.price > processor.price) {
+                cheapProcessor = processor;
+            }
+        })
+
+
+        let count = processors.filter(function (processor) {
+            return processor.price > averageSum
+        }).length;
+
+        document.write(`<p>Все процессоры:</p>`);
+        processors.forEach(function (processor) {
+            document.write(`<p>${processor.getInfo}</p>`);
+        })
+        document.write(`<p>Максимальная цена: ${expensiveProcessor.price}</p>`)
+        document.write(`<p>Минимальная цена: ${cheapProcessor.price}</p>`)
+        document.write(`<p>Суммарная стоимость: ${totalSum}</p>`)
+        document.write(`<p>Средняя стоимость: ${averageSum}</p>`)
+        document.write(`<p>Количество объектов со стоимостью выше средней: ${count}</p>`)
+   </script>
+</body>
+</html>

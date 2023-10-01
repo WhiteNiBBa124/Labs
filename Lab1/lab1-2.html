@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Андреев Даниил</title>
+</head>
+<body>
+    <script>
+        let r = +(prompt("Введите значение r", 10));
+        let x = +(prompt("Введите значение x", 10));
+        let y = +(prompt("Введите значение y", 10));
+        let z = +(prompt("Введите значение z", 10));
+        let S = Math.PI * r * r;
+        let l = 2 * Math.PI * r;
+        let b = (1 + Math.pow(Math.cos(x + z), 2)) / Math.abs(Math.pow(x, 3) - 2 * y * y);
+
+        document.write(`Вариант 1`);
+        document.write(`<p style="font-weight: 900; font-size: 20px">(таблица 1) Площадь круга и длину окружности радиуса ${r}</p>`);
+        document.write(`<p>S = ${S}</p>`);
+        document.write(`<p>l = ${l}</p>`);
+        document.write('<img src="images/1.png">')
+        document.write(`<p style="font-weight: 900; font-size: 20px">(таблица 1) Площадь круга и длину окружности радиуса ${r}</p>`);
+        document.write(`<p>x = ${x}</p>`);
+        document.write(`<p>y = ${y}</p>`);
+        document.write(`<p>z = ${z}</p>`);
+        document.write(`<p>b = ${b}</p>`);
+        document.write('<img src="images/2.png">')
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Андреев Даниил</title>
+</head>
+<body>
+<script>
+    function shuffleLetters(word) {
+        if (word.length <= 2) {
+            return word;
+        }
+
+        let middle = word.slice(1, -1);
+        let shuffledMiddle = "";
+
+        while (middle) {
+            const randomIndex = Math.floor(Math.random() * middle.length);
+            shuffledMiddle += middle[randomIndex];
+            middle = middle.slice(0, randomIndex) + middle.slice(randomIndex + 1);
+        }
+
+        return word[0] + shuffledMiddle + word[word.length - 1];
+    }
+
+    function shuffleInSentence(sentence) {
+        const words = sentence.split(" ");
+        const shuffledWords = words.map(shuffleLetters);
+        return shuffledWords.join(" ");
+    }
+
+    const originalSentence = "Перемешивание букв в словах не меняя первую и последнюю букву слова";
+    const shuffledSentence = shuffleInSentence(originalSentence);
+
+    document.write(`<p>Исходная строка: ${originalSentence}</p>`)
+    document.write(`<p>Измененная строка: ${shuffledSentence}</p>`)
+</script>
+</body>
+</html>

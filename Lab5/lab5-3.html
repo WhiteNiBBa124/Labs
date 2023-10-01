@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Андреев Даниил</title>
+</head>
+<body>
+<script>
+  let alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+  let str = "тестовый пароль яблоко";
+  let coddedStr = "";
+
+  for (let symbol of str) {
+    if (symbol === "я") {
+      coddedStr += "а";
+    } else if (alphabet.indexOf(symbol) !== -1) {
+      coddedStr += alphabet[alphabet.indexOf(symbol) + 1];
+    } else {
+      coddedStr += symbol;
+    }
+  }
+
+  document.write(`<p>Исходная строка: ${str}</p>`);
+  document.write(`<p>Закодированная строка: ${coddedStr}</p>`);
+</script>
+</body>
+</html>

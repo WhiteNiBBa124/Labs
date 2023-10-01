@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Андреев Даниил</title>
+</head>
+<body>
+<script>
+    let lang = prompt("Введите язык");
+
+
+    try {
+        switch (lang) {
+            case "ru":
+                document.write('<p>Русский язык</p>');
+                break;
+            case "en":
+                document.write('<p>Английский язык</p>');
+                break;
+            case "fr":
+                document.write('<p>Французский язык</p>');
+                break;
+            case "de":
+                document.write('<p>Немецкий язык</p>');
+                break;
+            default:
+                throw new Error("Язык неизвестен");
+        }
+    } catch (err) {
+        document.write(`<p>${err.message}</p>`);
+    }
+</script>
+</body>
+</html>
