@@ -57,3 +57,7 @@
 [Задание 1](https://whitenibba124.github.io/Labs/Lab11/lab11-1.html)   
 [Задание 2](https://whitenibba124.github.io/Labs/Lab11/lab11-2.html)   
 [Задание 3](https://whitenibba124.github.io/Labs/Lab11/lab11-3.html)      
+
+#Exam
+---
+[Экзамен](https://whitenibba124.github.io/Labs/Exam/pages/index)
