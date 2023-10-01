@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Задачи</title>
+    <link rel="stylesheet" href="../styles/index.css">
+</head>
+<body>
+<nav>
+    <a href="./index.html">Главная</a>
+    <a href="./tasks.html" class="selected">Задачи</a>
+    <a href="./registrationForm.html">Форма регистрации</a>
+    <a href="./feedBackForm.html">Форма обратной связи</a>
+    <a href="./test.html">Тест</a>
+    <a href="./animation.html">Анимация</a>
+    <a href="./model.html">Модель</a>
+    <a href="videoLessons.html">Видеоуроки</a>
+    <a href="./books.html">Книги</a>
+    <a href="./aboutAuthor.html">Об авторе</a>
+</nav>
+<div class="container">
+    <h1>Задачи</h1>
+
+    <form action="#" onsubmit="return false">
+        <div id="result"></div>
+        <button onclick="getResult()">Проверить результат</button>
+    </form>
+</div>
+<script>
+    const answers = ["Описание", "Integer", "Функция", "If", "Массив", "Множественные формы", "Компиляция", "For", "Самовызыв", "Float"];
+
+    function createQuestion(questionText) {
+        const label = document.createElement("label");
+        const span = document.createElement("span");
+        const input = document.createElement("input");
+
+        span.innerHTML = questionText;
+        input.placeholder = "Ответ";
+        input.type = "text";
+
+        label.append(span, input);
+        document.forms[0].appendChild(label);
+    }
+
+    function getResult() {
+        let result = 0;
+        const questions = [...document.forms[0].elements];
+
+        questions.slice(1).forEach((item, index) => {
+            if (item.value.toLowerCase() === answers[index].toLowerCase()) {
+                result++;
+            }
+        })
+
+        document.getElementById("result").innerHTML = `Вы смогли правильно ответить на ${result} вопросов.`
+    }
+
+    createQuestion("1.Что такое алгоритм?");
+    createQuestion("2.Какой тип данных используется для целых чисел?");
+    createQuestion("3.Как называется набор инструкций, выполняющих определенную задачу?");
+    createQuestion("4.Какой оператор используется для проверки условия?");
+    createQuestion("5.Какая структура данных представляет собой упорядоченный набор элементов?");
+    createQuestion("6.Что означает термин \"полиморфизм\" в объектно-ориентированном программировании?");
+    createQuestion("7.Как называется процесс перевода исходного кода в машинный код?");
+    createQuestion("8.Какая конструкция используется для повторения кода в цикле?");
+    createQuestion("9.Что означает термин \"рекурсия\" в программировании?");
+    createQuestion("10.Какой тип данных используется для представления десятичных чисел?");
+</script>
+</body>
+</html>
